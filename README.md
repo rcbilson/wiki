@@ -29,15 +29,13 @@ extension.
 like this to run it:
 
 ```
-  bookmarks:
+  wiki:
     image: rcbilson/wiki:latest
     pull_policy: never
     ports:
       - 80:80
     volumes:
-      - ~/vimwiki:/app/data
-    env:
-      - WIKI_WIKIPATH=/app/data
+      - /path/to/vimwiki:/app/data
     restart: unless-stopped
 ```
 
