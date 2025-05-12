@@ -9,9 +9,13 @@ up: docker
 docker:
 	docker build . -t rcbilson/${SERVICE}
 
+.PHONY: frontend
+frontend:
+	cd frontend && yarn dev
+
 .PHONY: server
 server:
-	cd backend/cmd/server && go run -tags fts5 .
+	cd backend/cmd/server && go run .
 
 .PHONY: upgrade-frontend
 upgrade-frontend:
