@@ -52,23 +52,25 @@ function PageRenderer() {
   };
 
   return (
-    <div>
-      <button style={{ position: 'absolute', top: '10px', right: '10px' }} onClick={() => setIsEditing(!isEditing)}>
-        {isEditing ? 'View' : 'Edit'}
-      </button>
+    <div style={{ display: 'flex', flexFlow: 'column', width: '100vw', height: '100vh', margin: 0, padding: '1em', boxSizing: 'border-box' }}>
+      <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
+        {isEditing && (
+          <button onClick={handleSave}>
+            Save
+          </button>
+        )}
+        <button onClick={() => setIsEditing(!isEditing)}>
+          {isEditing ? 'View' : 'Edit'}
+        </button>
+      </div>
       {isEditing ? (
         <textarea
           value={rawMarkdown}
           onChange={(e) => setRawMarkdown(e.target.value)}
-          style={{ width: '100%', height: '90vh' }}
+          style={{ width: 'auto', flex: 1}}
         />
       ) : (
         <div dangerouslySetInnerHTML={{ __html: content }} />
-      )}
-      {isEditing && (
-        <button onClick={handleSave} style={{ marginTop: '10px' }}>
-          Save
-        </button>
       )}
     </div>
   );
